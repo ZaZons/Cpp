@@ -14,8 +14,9 @@ int main()
 	{
 		cout << "Ano e bissexto" << endl;
 	}
-	else if (x % 4 == 0)
+	else
 	{
-		
+		if (x % 4 == 0 && x % 100 != 0) cout << "Ano e bissexto" << endl;
+		else cout << "Ano n e bissexto" << endl;
 	}
 }
