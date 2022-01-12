@@ -21,7 +21,7 @@ using namespace std;
 void mostrarMenu();
 char obterEscolha();
 
-void fazerAdicionar();
+void fazerAdicionar(vector<string>& a, vector<string>& d, vector<string>& e, vector<string>& r);
 void fazerVisualizar(const vector<string>& a, const vector<string>& d, const vector<string>& e, const vector<string>& r);
 void fazerDesconhecido();
 
@@ -41,12 +41,17 @@ int main() {
 		escolha = obterEscolha();
 
 		switch (escolha) {
-			case 'A': 
-				fazerAdicionar();
+			case 'A':
+				fazerAdicionar(categoriaAcao, categoriaDesporto, categoriaEstrategia, categoriaRPG);
 				break;
 			case 'V':
 				fazerVisualizar(categoriaAcao, categoriaDesporto, categoriaEstrategia, categoriaRPG);
 				break;
+			case 'S':
+				cout << "Adeus";
+				break;
+			default:
+				fazerDesconhecido();
 		}
 	} while (escolha != 'S');
 }
@@ -64,7 +69,7 @@ char obterEscolha() {
 	return toupper(escolha);
 }
 
-void fazerAdicionar() {
+void fazerAdicionar(vector<string>& a, vector<string>& d, vector<string>& e, vector<string>& r) {
 	char escolha{};
 	bool escolhidoAcao = false;
 	bool escolhidoDesporto = false;
@@ -108,13 +113,17 @@ void fazerAdicionar() {
 					cout << "Tem de escolher uma categoria, pelo menos" << endl;
 				} else {
 					cout << "Introduza o nome do jogo: ";
-					if(escolhidoAcao){}
+					getline(cin >> ws, nomeDoJogo);
+					if(escolhidoAcao) a.push_back(nomeDoJogo);
+					if(escolhidoDesporto) d.push_back(nomeDoJogo);
+					if(escolhidoEstrategia) e.push_back(nomeDoJogo);
+					if(escolhidoRPG) r.push_back(nomeDoJogo);
 				}
 				break;
 			default:
 				fazerDesconhecido();
 		}
-	} while (escolha != 'i'); 
+	} while (escolha != 'I'); 
 }
 
 void fazerVisualizar(const vector<string>& a, const vector<string>& d, const vector<string>& e, const vector<string>& r) {
@@ -160,10 +169,10 @@ void fazerVisualizar(const vector<string>& a, const vector<string>& d, const vec
 
 void mostrarCategoria(const vector<string>& v) {
 	if (v.size() == 0) {
-		cout << "A categoria selecionada não tem qualquer jogo inserido" << endl;
+		cout << "\tA categoria selecionada não tem qualquer jogo inserido" << endl;
 	} else {
 		for(int i = 0; i < v.size(); i++) 
-			cout << i + 1 << " - " << v.at(i) << endl;
+			cout << "\t" << i + 1 << " - " << v.at(i) << endl;
 	}
 }
 
