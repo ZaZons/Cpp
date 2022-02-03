@@ -1,10 +1,4 @@
 #include <iostream>
-
-#include <vector>
-
-#include <cstring>
-#include <cctype>
-
 #include <iomanip>
 #include <string>
 
@@ -17,7 +11,7 @@ char obterEscolha();
 
 int main() {
 	int iogurtes{}, ovos{}, bananas{};
-	
+
 	iogurtes = alterarQuantidade("iogurtes");
 	if(iogurtes == -1) {
 		imprimirListaCompras();
@@ -47,7 +41,6 @@ int alterarQuantidade(string produto) {
 				do {
 					cout << "Introduza a quantidade de " << produto << ": ";
 					cin >> quantidade;
-					cout << quantidade;
 					if (quantidade < 0)
 						cout << "Quantidade invalida, tente de novo";
 				} while (quantidade < 0);
@@ -63,7 +56,7 @@ int alterarQuantidade(string produto) {
 				break;
 			}
 		}
-	} while (escolha != 'S' || escolha != 'N');
+	} while (escolha != 'S' && escolha != 'N');
 }
 
 void imprimirListaCompras(int iogurtes, int ovos, int bananas) {
